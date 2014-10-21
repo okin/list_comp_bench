@@ -32,7 +32,6 @@ if __name__ == '__main__':
     assert optimised_for_loop(elements) == list_comprehension(elements)
     print("Self-test okay.")
 
-    print("Elements: {0}".format(len(elements)))
     print("For Loop: {0}".format(timeit.timeit("for_loop(elements)", setup="from __main__ import for_loop, elements ")))
     print("Optimised For Loop: {0}".format(timeit.timeit("optimised_for_loop(elements)", setup="from __main__ import optimised_for_loop, elements ")))
     print("List Comprehension: {0}".format(timeit.timeit("list_comprehension(elements)", setup="from __main__ import list_comprehension, elements")))
