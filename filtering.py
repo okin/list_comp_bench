@@ -32,8 +32,14 @@ def truth_testing_list_comprehension(numbers):
 
 if __name__ == '__main__':
     elements = list(range(10) * 10)
-
     print("Elements: {0}".format(len(elements)))
+
+    assert filter_function(elements) == filter_function_with_lambda(elements)
+    assert filter_function_with_lambda(elements) == list_comprehension(elements)
+    assert truth_testing_with_filter(elements) == truth_testing_with_lambda_and_filter(elements)
+    assert truth_testing_with_lambda_and_filter(elements) == truth_testing_list_comprehension(elements)
+    print("Self-test okay.")
+
     print("filter: {0}".format(timeit.timeit("filter_function(elements)", setup="from __main__ import filter_function, elements ")))
     print("filter and lambda: {0}".format(timeit.timeit("filter_function_with_lambda(elements)", setup="from __main__ import filter_function_with_lambda, elements ")))
     print("List Comprehension: {0}".format(timeit.timeit("list_comprehension(elements)", setup="from __main__ import list_comprehension, elements")))

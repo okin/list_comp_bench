@@ -26,6 +26,11 @@ def optimised_for_loop(input):
 
 if __name__ == '__main__':
     elements = list(range(100))
+    print("Elements: {0}".format(len(elements)))
+
+    assert for_loop(elements) == optimised_for_loop(elements)
+    assert optimised_for_loop(elements) == list_comprehension(elements)
+    print("Self-test okay.")
 
     print("Elements: {0}".format(len(elements)))
     print("For Loop: {0}".format(timeit.timeit("for_loop(elements)", setup="from __main__ import for_loop, elements ")))
