@@ -45,7 +45,7 @@ def unique_items_with_for_loop(elements):
 
 
 if __name__ == '__main__':
-    elements = list(range(10) * 1)
+    elements = list(range(26) * 10)
     print("Elements: {0}".format(len(elements)))
 
     assert filter_function(elements) == filter_function_with_lambda(elements)
@@ -66,4 +66,3 @@ if __name__ == '__main__':
     print("Unique items with set: {0}".format(timeit.timeit("unique_items_with_set(elements)", setup="from __main__ import unique_items_with_set, elements")))
     print("Unique items with set and list: {0}".format(timeit.timeit("unique_items_with_set_and_list(elements)", setup="from __main__ import unique_items_with_set_and_list, elements")))
     print("Unique items with for loop: {0}".format(timeit.timeit("unique_items_with_for_loop(elements)", setup="from __main__ import unique_items_with_for_loop, elements")))
-
