@@ -3,10 +3,6 @@
 import timeit
 
 
-def list_comprehension(numbers):
-    return [number for number in numbers if number % 2 == 0]
-
-
 def filter_function(numbers):
     def is_even(number):
         return number % 2 == 0
@@ -16,6 +12,10 @@ def filter_function(numbers):
 
 def filter_function_with_lambda(numbers):
     return filter(lambda number: number % 2 == 0, numbers)
+
+
+def list_comprehension(numbers):
+    return [number for number in numbers if number % 2 == 0]
 
 
 def truth_testing_with_filter(numbers):
