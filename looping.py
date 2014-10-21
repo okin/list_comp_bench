@@ -25,7 +25,7 @@ def optimised_for_loop(input):
 
 
 if __name__ == '__main__':
-    elements = list(range(26 * 10))
+    elements = list(range(26 * 200))
 
     assert for_loop(elements) == optimised_for_loop(elements)
     assert optimised_for_loop(elements) == list_comprehension(elements)

@@ -20,7 +20,7 @@ def map_function_with_lambda(elements):
 
 
 if __name__ == '__main__':
-    elements = list(string.ascii_lowercase * 10)
+    elements = list(string.ascii_lowercase * 200)
 
     assert map_function(elements) == map_function_with_lambda(elements)
     assert map_function_with_lambda(elements) == list_comprehension(elements)

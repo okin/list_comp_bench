@@ -45,7 +45,7 @@ def unique_items_with_for_loop(elements):
 
 
 if __name__ == '__main__':
-    elements = list(range(26) * 10)
+    elements = list(range(26) * 200)
 
     assert filter_function(elements) == filter_function_with_lambda(elements)
     assert filter_function_with_lambda(elements) == list_comprehension(elements)
