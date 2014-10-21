@@ -26,12 +26,11 @@ def optimised_for_loop(input):
 
 if __name__ == '__main__':
     elements = list(range(26 * 10))
-    print("Elements: {0}".format(len(elements)))
 
     assert for_loop(elements) == optimised_for_loop(elements)
     assert optimised_for_loop(elements) == list_comprehension(elements)
-    print("Self-test okay.")
 
-    print("For Loop: {0}".format(timeit.timeit("for_loop(elements)", setup="from __main__ import for_loop, elements ")))
-    print("Optimised For Loop: {0}".format(timeit.timeit("optimised_for_loop(elements)", setup="from __main__ import optimised_for_loop, elements ")))
-    print("List Comprehension: {0}".format(timeit.timeit("list_comprehension(elements)", setup="from __main__ import list_comprehension, elements")))
+    print("Creating a new list with {0} elements - lowest result of 1000000 calls repeated 3 times".format(len(elements)))
+    print("for-lop: {0:.2f}s".format(min(timeit.repeat("for_loop(elements)", setup="from __main__ import for_loop, elements "))))
+    print("optimised for-loop: {0:.2f}s".format(min(timeit.repeat("optimised_for_loop(elements)", setup="from __main__ import optimised_for_loop, elements "))))
+    print("list comprehension: {0:.2f}s".format(min(timeit.repeat("list_comprehension(elements)", setup="from __main__ import list_comprehension, elements"))))

@@ -46,7 +46,6 @@ def unique_items_with_for_loop(elements):
 
 if __name__ == '__main__':
     elements = list(range(26) * 10)
-    print("Elements: {0}".format(len(elements)))
 
     assert filter_function(elements) == filter_function_with_lambda(elements)
     assert filter_function_with_lambda(elements) == list_comprehension(elements)
@@ -55,14 +54,18 @@ if __name__ == '__main__':
     # A small cheat because we are only interested in the contents
     assert list(unique_items_with_set(elements)) == unique_items_with_set_and_list(elements)
     assert unique_items_with_set_and_list(elements) == unique_items_with_for_loop(elements)
-    print("Self-test okay.")
 
-    print("filter: {0}".format(timeit.timeit("filter_function(elements)", setup="from __main__ import filter_function, elements ")))
-    print("filter and lambda: {0}".format(timeit.timeit("filter_function_with_lambda(elements)", setup="from __main__ import filter_function_with_lambda, elements ")))
-    print("List Comprehension: {0}".format(timeit.timeit("list_comprehension(elements)", setup="from __main__ import list_comprehension, elements")))
-    print("Truth testing with filter: {0}".format(timeit.timeit("truth_testing_with_filter(elements)", setup="from __main__ import truth_testing_with_filter, elements ")))
-    print("Truth testing with filter and lambda: {0}".format(timeit.timeit("truth_testing_with_lambda_and_filter(elements)", setup="from __main__ import truth_testing_with_lambda_and_filter, elements ")))
-    print("Truth testing with List Comprehension: {0}".format(timeit.timeit("truth_testing_list_comprehension(elements)", setup="from __main__ import truth_testing_list_comprehension, elements")))
-    print("Unique items with set: {0}".format(timeit.timeit("unique_items_with_set(elements)", setup="from __main__ import unique_items_with_set, elements")))
-    print("Unique items with set and list: {0}".format(timeit.timeit("unique_items_with_set_and_list(elements)", setup="from __main__ import unique_items_with_set_and_list, elements")))
-    print("Unique items with for loop: {0}".format(timeit.timeit("unique_items_with_for_loop(elements)", setup="from __main__ import unique_items_with_for_loop, elements")))
+    print("Filtering a list of {0} elements - lowest result of 1000000 calls repeated 3 times".format(len(elements)))
+    print("filter(): {0:.2f}s".format(min(timeit.repeat("filter_function(elements)", setup="from __main__ import filter_function, elements "))))
+    print("filter() and lambda: {0:.2f}s".format(min(timeit.repeat("filter_function_with_lambda(elements)", setup="from __main__ import filter_function_with_lambda, elements "))))
+    print("list comprehension: {0:.2f}s".format(min(timeit.repeat("list_comprehension(elements)", setup="from __main__ import list_comprehension, elements"))))
+
+    print("Truth testing with a list of {0} elements - lowest result of 1000000 calls repeated 3 times".format(len(elements)))
+    print("filter(): {0:.2f}s".format(min(timeit.repeat("truth_testing_with_filter(elements)", setup="from __main__ import truth_testing_with_filter, elements "))))
+    print("filter() and lambda: {0:.2f}s".format(min(timeit.repeat("truth_testing_with_lambda_and_filter(elements)", setup="from __main__ import truth_testing_with_lambda_and_filter, elements "))))
+    print("list comprehension: {0:.2f}s".format(min(timeit.repeat("truth_testing_list_comprehension(elements)", setup="from __main__ import truth_testing_list_comprehension, elements"))))
+
+    print("Creating a list with of unique elements with a list of {0} elements - lowest result of 1000000 calls repeated 3 times".format(len(elements)))
+    print("set(): {0:.2f}s".format(min(timeit.repeat("unique_items_with_set(elements)", setup="from __main__ import unique_items_with_set, elements"))))
+    print("list(set()): {0:.2f}s".format(min(timeit.repeat("unique_items_with_set_and_list(elements)", setup="from __main__ import unique_items_with_set_and_list, elements"))))
+    print("for-loop: {0:.2f}s".format(min(timeit.repeat("unique_items_with_for_loop(elements)", setup="from __main__ import unique_items_with_for_loop, elements"))))
