@@ -22,6 +22,10 @@ def truth_testing_with_filter(numbers):
     return filter(None, numbers)
 
 
+def truth_testing_with_filter_and_builtin(numbers):
+    return filter(bool, numbers)
+
+
 def truth_testing_with_lambda_and_filter(numbers):
     return filter(lambda x: x, numbers)
 
@@ -33,8 +37,10 @@ def truth_testing_list_comprehension(numbers):
 def unique_items_with_set(elements):
     return set(elements)
 
+
 def unique_items_with_set_and_list(elements):
     return list(set(elements))
+
 
 def unique_items_with_for_loop(elements):
     new = []
@@ -63,6 +69,7 @@ if __name__ == '__main__':
     print("Truth testing with a list of {0} elements - lowest result of 1000000 calls repeated 3 times".format(len(elements)))
     print("filter(): {0:.2f}s".format(min(timeit.repeat("truth_testing_with_filter(elements)", setup="from __main__ import truth_testing_with_filter, elements "))))
     print("filter() and lambda: {0:.2f}s".format(min(timeit.repeat("truth_testing_with_lambda_and_filter(elements)", setup="from __main__ import truth_testing_with_lambda_and_filter, elements "))))
+    print("filter() and builtin: {0:.2f}s".format(min(timeit.repeat("truth_testing_with_filter_and_builtin(elements)", setup="from __main__ import truth_testing_with_filter_and_builtin, elements "))))
     print("list comprehension: {0:.2f}s".format(min(timeit.repeat("truth_testing_list_comprehension(elements)", setup="from __main__ import truth_testing_list_comprehension, elements"))))
 
     print("Creating a list with of unique elements with a list of {0} elements - lowest result of 1000000 calls repeated 3 times".format(len(elements)))
