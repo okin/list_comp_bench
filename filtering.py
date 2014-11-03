@@ -53,13 +53,13 @@ def unique_items_with_for_loop(elements):
 if __name__ == '__main__':
     elements = list(range(26) * 200)
 
-    assert filter_function(elements) == filter_function_with_lambda(elements)
-    assert filter_function_with_lambda(elements) == list_comprehension(elements)
-    assert truth_testing_with_filter(elements) == truth_testing_with_lambda_and_filter(elements)
-    assert truth_testing_with_filter(elements) == truth_testing_with_filter_and_builtin(elements)
-    assert truth_testing_with_lambda_and_filter(elements) == truth_testing_list_comprehension(elements)
+    assert list(filter_function(elements)) == list(filter_function_with_lambda(elements))
+    assert list(filter_function_with_lambda(elements)) == list(list_comprehension(elements))
+    assert list(truth_testing_with_filter(elements)) == list(truth_testing_with_lambda_and_filter(elements))
+    assert list(truth_testing_with_filter(elements)) == list(truth_testing_with_filter_and_builtin(elements))
+    assert list(truth_testing_with_lambda_and_filter(elements)) == list(truth_testing_list_comprehension(elements))
     assert list(unique_items_with_set(elements)) == unique_items_with_set_and_list(elements)  # A small cheat because we are only interested in the contents
-    assert unique_items_with_set_and_list(elements) == unique_items_with_for_loop(elements)
+    assert list(unique_items_with_set_and_list(elements)) == list(unique_items_with_for_loop(elements))
 
     print("Filtering a list of {0} elements - lowest result of 1000000 calls repeated 3 times".format(len(elements)))
     print("filter(): {0:.2f}s".format(min(timeit.repeat("filter_function(elements)", setup="from __main__ import filter_function, elements "))))
