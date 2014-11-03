@@ -30,7 +30,8 @@ if __name__ == '__main__':
     assert for_loop(elements) == optimised_for_loop(elements)
     assert optimised_for_loop(elements) == list_comprehension(elements)
 
-    print("Creating a new list with {0} elements - lowest result of 1000000 calls repeated 3 times".format(len(elements)))
-    print("for-lop: {0:.2f}s".format(min(timeit.repeat("for_loop(elements)", setup="from __main__ import for_loop, elements "))))
-    print("optimised for-loop: {0:.2f}s".format(min(timeit.repeat("optimised_for_loop(elements)", setup="from __main__ import optimised_for_loop, elements "))))
-    print("list comprehension: {0:.2f}s".format(min(timeit.repeat("list_comprehension(elements)", setup="from __main__ import list_comprehension, elements"))))
+    repeat_kwargs = {"number": 1000000, "repeat": 3}
+    print("Creating a new list with {0} elements - lowest result of {number} calls repeated {repeat} times".format(len(elements), **repeat_kwargs))
+    print("for-lop: {0:.2f}s".format(min(timeit.repeat("for_loop(elements)", setup="from __main__ import for_loop, elements ")), **repeat_kwargs))
+    print("optimised for-loop: {0:.2f}s".format(min(timeit.repeat("optimised_for_loop(elements)", setup="from __main__ import optimised_for_loop, elements ")), **repeat_kwargs))
+    print("list comprehension: {0:.2f}s".format(min(timeit.repeat("list_comprehension(elements)", setup="from __main__ import list_comprehension, elements")), **repeat_kwargs))
