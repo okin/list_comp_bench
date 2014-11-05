@@ -4,7 +4,7 @@ import timeit
 
 
 def list_comprehension(input):
-    return [element for element in elements]
+    return list([element for element in elements])
 
 
 def for_loop(input):
@@ -12,7 +12,7 @@ def for_loop(input):
     for element in elements:
         data.append(element)
 
-    return data
+    return list(data)
 
 
 def optimised_for_loop(input):
@@ -21,7 +21,7 @@ def optimised_for_loop(input):
     for element in elements:
         appender(element)
 
-    return data
+    return list(data)
 
 
 if __name__ == '__main__':
