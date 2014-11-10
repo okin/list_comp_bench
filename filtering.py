@@ -1,7 +1,9 @@
 #! /usr/bin/python3
 
 import timeit
+import sys
 
+RUNS_PYTHON_3 = bool(sys.version_info >= (3, ))
 
 def filter_using_for_loop(numbers):
     even_numbers = []
@@ -47,6 +49,11 @@ def unique_items_with_set(elements):
     return list(set(elements))
 
 
+if RUNS_PYTHON_3:
+    def unique_items_with_set_comprehension(elements):
+        return list({element for element in elements})
+
+
 def unique_items_with_for_loop(elements):
     new = []
     for element in elements:
@@ -65,6 +72,8 @@ if __name__ == '__main__':
     assert truth_testing_with_filter(elements) == truth_testing_with_filter_and_builtin(elements)
     assert truth_testing_with_lambda_and_filter(elements) == truth_testing_list_comprehension(elements)
     assert unique_items_with_set(elements) == unique_items_with_for_loop(elements)
+    if RUNS_PYTHON_3:
+        assert unique_items_with_set_comprehension(elements) == unique_items_with_for_loop(elements)
 
     repeat_kwargs = {"number": 1000000, "repeat": 3}
     print("Filtering a list of {0} elements - lowest result of {number} calls repeated {repeat} times".format(len(elements), **repeat_kwargs))
@@ -81,4 +90,6 @@ if __name__ == '__main__':
 
     print("Creating a list with of unique elements with a list of {0} elements - lowest result of 1000000 calls repeated 3 times".format(len(elements), **repeat_kwargs))
     print("set(): {0:.2f}s".format(min(timeit.repeat("unique_items_with_set(elements)", setup="from __main__ import unique_items_with_set, elements")), **repeat_kwargs))
+    if RUNS_PYTHON_3:
+        print("set comprehension: {0:.2f}s".format(min(timeit.repeat("unique_items_with_set_comprehension(elements)", setup="from __main__ import unique_items_with_set_comprehension, elements")), **repeat_kwargs))
     print("for-loop: {0:.2f}s".format(min(timeit.repeat("unique_items_with_for_loop(elements)", setup="from __main__ import unique_items_with_for_loop, elements")), **repeat_kwargs))
