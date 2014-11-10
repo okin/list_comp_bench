@@ -3,6 +3,15 @@
 import timeit
 
 
+def filter_using_for_loop(numbers):
+    even_numbers = []
+    for number in numbers:
+        if number % 2 == 0:
+            even_numbers.append(number)
+
+    return list(even_numbers)
+
+
 def filter_function(numbers):
     def is_even(number):
         return number % 2 == 0
@@ -49,6 +58,7 @@ def unique_items_with_for_loop(elements):
 if __name__ == '__main__':
     elements = list(range(26)) * 200
 
+    assert filter_using_for_loop(elements) == filter_function(elements)
     assert filter_function(elements) == filter_function_with_lambda(elements)
     assert filter_function_with_lambda(elements) == list_comprehension(elements)
     assert truth_testing_with_filter(elements) == truth_testing_with_lambda_and_filter(elements)
@@ -58,6 +68,7 @@ if __name__ == '__main__':
 
     repeat_kwargs = {"number": 1000000, "repeat": 3}
     print("Filtering a list of {0} elements - lowest result of {number} calls repeated {repeat} times".format(len(elements), **repeat_kwargs))
+    print("for loop: {0:.2f}s".format(min(timeit.repeat("filter_using_for_loop(elements)", setup="from __main__ import filter_using_for_loop, elements ")), **repeat_kwargs))
     print("filter(): {0:.2f}s".format(min(timeit.repeat("filter_function(elements)", setup="from __main__ import filter_function, elements ")), **repeat_kwargs))
     print("filter() and lambda: {0:.2f}s".format(min(timeit.repeat("filter_function_with_lambda(elements)", setup="from __main__ import filter_function_with_lambda, elements ")), **repeat_kwargs))
     print("list comprehension: {0:.2f}s".format(min(timeit.repeat("list_comprehension(elements)", setup="from __main__ import list_comprehension, elements")), **repeat_kwargs))
